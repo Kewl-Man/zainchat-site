@@ -115,6 +115,148 @@
   </style>
 
   <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyA2JH2mhUfy7yJkTUWcx4KrZ2CyA0t5GsU",
+      authDomain: "zainchat-dff49.firebaseapp.com",
+      projectId: "zainchat-dff49",
+      storageBucket: "zainchat-dff49.firebasestorage.app",
+      messagingSenderId: "255020469157",
+      appId: "1:255020469157:web:f7c13648b221dde5f3b64c",
+      measurementId: "G-LCZ3D0K1B6"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+
+    function showError(msg) {
+      document.getElementById("error").innerText = msg;
+    }
+
+    function showStatus(msg) {
+      document.getElementById("status").innerText = msg;
+    }
+
+    function signup() {
+      showError("");
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+
+      auth.createUserWithEmailAndPassword(email, password)
+        .then(() => showStatus("Account created!"))
+        .catch(err => showError(err.message));
+    }
+
+    function login() {
+      showError("");
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+
+      auth.signInWithEmailAndPassword(email, password)
+        .then(() => {
+          window.location.href = "home.html";
+        })
+        .catch(err => showError(err.message));
+    }
+  </script>
+</head>
+
+<body>
+  <div class="card">
+    <h1>ZainChat</h1>
+
+    <input id="email" type="email" placeholder="Email">
+    <input id="password" type="password" placeholder="Password">
+
+    <div id="error" class="error"></div>
+
+    <button class="login-btn" onclick="login()">Log In</button>
+    <button class="signup-btn" onclick="signup()">Sign Up</button>
+
+    <div id="status" class="status"></div>
+  </div>
+</body>
+</html>
+
+    @keyframes popIn {
+      from { opacity: 0; transform: scale(0.9); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    h1 {
+      margin: 0 0 20px 0;
+      text-align: center;
+      color: #2ECC71;
+      font-size: 26px;
+      font-weight: 700;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      margin: 8px 0;
+      border-radius: 12px;
+      border: 2px solid #dcdcdc;
+      font-size: 15px;
+      transition: 0.2s;
+    }
+
+    input:focus {
+      border-color: #4CD964;
+      outline: none;
+      box-shadow: 0 0 8px rgba(76,217,100,0.4);
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      margin-top: 10px;
+      border-radius: 12px;
+      border: none;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .login-btn {
+      background: #4CD964;
+      color: white;
+    }
+
+    .login-btn:hover {
+      background: #3EC85A;
+      transform: translateY(-2px);
+    }
+
+    .signup-btn {
+      background: white;
+      border: 2px solid #4CD964;
+      color: #4CD964;
+    }
+
+    .signup-btn:hover {
+      background: #4CD964;
+      color: white;
+      transform: translateY(-2px);
+    }
+
+    .error {
+      color: red;
+      font-size: 14px;
+      min-height: 20px;
+      margin-top: 8px;
+      text-align: center;
+    }
+
+    .status {
+      text-align: center;
+      margin-top: 10px;
+      font-size: 14px;
+      color: #2ECC71;
+    }
+  </style>
+
+  <script>
     // 🔥 YOUR REAL FIREBASE CONFIG
     const firebaseConfig = {
       apiKey: "AIzaSyA2JH2mhUfy7yJkTUWcx4KrZ2CyA0t5GsU",
