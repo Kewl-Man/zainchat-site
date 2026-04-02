@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <title>ZainChat Login</title>
+
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyA2JH2mhUfy7yJkTUWcx4KrZ2CyA0t5GsU",
+      authDomain: "zainchat-dff49.firebaseapp.com",
+      projectId: "zainchat-dff49",
+      appId: "1:255020469157:web:f7c13648b221dde5f3b64c"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+
+    function signup() {
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+
+      auth.createUserWithEmailAndPassword(email, password)
+        .then(() => alert("Account created!"))
+        .catch(err => alert(err.message));
+    }
+
+    function login() {
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+
+      auth.signInWithEmailAndPassword(email, password)
+        .then(() => alert("Logged in!"))
+        .catch(err => alert(err.message));
+    }
+  </script>
+</head>
+
+<body style="font-family: Arial; padding: 20px;">
+  <h1>ZainChat Login</h1>
+
+  <input id="email" type="email" placeholder="Email"><br><br>
+  <input id="password" type="password" placeholder="Password"><br><br>
+
+  <button onclick="login()">Login</button>
+  <button onclick="signup()">Sign Up</button>
+</body>
+</html>
