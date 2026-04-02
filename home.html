@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <title>ZainChat Home</title>
+
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: linear-gradient(135deg, #7DFFA7, #4CD964);
+      animation: fadeIn 0.8s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.97); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    .container {
+      width: 380px;
+      background: white;
+      padding: 28px;
+      border-radius: 22px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.18);
+      animation: popIn 0.5s ease-out;
+      text-align: center;
+    }
+
+    @keyframes popIn {
+      from { opacity: 0; transform: scale(0.9); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 26px;
+      color: #2ECC71;
+      font-weight: 700;
+    }
+
+    p {
+      margin-top: 10px;
+      font-size: 16px;
+      color: #444;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 12px 20px;
+      border-radius: 12px;
+      border: none;
+      background: #4CD964;
+      color: white;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    button:hover {
+      background: #3EC85A;
+      transform: translateY(-2px);
+    }
+  </style>
+
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyA2JH2mhUfy7yJkTUWcx4KrZ2CyA0t5GsU",
+      authDomain: "zainchat-dff49.firebaseapp.com",
+      projectId: "zainchat-dff49",
+      storageBucket: "zainchat-dff49.firebasestorage.app",
+      messagingSenderId: "255020469157",
+      appId: "1:255020469157:web:f7c13648b221dde5f3b64c",
+      measurementId: "G-LCZ3D0K1B6"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+
+    auth.onAuthStateChanged(user => {
+      if (!user) {
+        window.location.href = "index.html";
+      } else {
+        document.getElementById("welcome").innerText = "Welcome, " + user.email;
+      }
+    });
+
+    function logout() {
+      auth.signOut().then(() => {
+        window.location.href = "index.html";
+      });
+    }
+  </script>
+</head>
+
+<body>
+  <div class="container">
+    <h1>ZainChat</h1>
+    <p id="welcome">Loading...</p>
+    <button onclick="logout()">Log Out</button>
+  </div>
+</body>
+</html>
