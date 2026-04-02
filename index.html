@@ -9,15 +9,16 @@
   <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
 
   <style>
-    body {
+    html, body {
       margin: 0;
-      height: 100vh;
+      padding: 0;
+      height: 100%;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: linear-gradient(135deg, #7DFFA7, #4CD964);
       display: flex;
       justify-content: center;
       align-items: center;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: linear-gradient(135deg, #7DFFA7, #4CD964);
-      animation: fadeIn 1s ease-out;
+      animation: fadeIn 0.8s ease-out;
     }
 
     @keyframes fadeIn {
@@ -26,23 +27,24 @@
     }
 
     .card {
-      background: white;
       width: 330px;
+      background: white;
       padding: 28px;
-      border-radius: 20px;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.15);
-      animation: pop 0.5s ease-out;
+      border-radius: 22px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.18);
+      animation: popIn 0.5s ease-out;
     }
 
-    @keyframes pop {
-      from { transform: scale(0.9); opacity: 0; }
-      to { transform: scale(1); opacity: 1; }
+    @keyframes popIn {
+      from { opacity: 0; transform: scale(0.9); }
+      to { opacity: 1; transform: scale(1); }
     }
 
     h1 {
       margin: 0 0 20px 0;
       text-align: center;
       color: #2ECC71;
+      font-size: 26px;
       font-weight: 700;
     }
 
@@ -113,7 +115,7 @@
   </style>
 
   <script>
-    // 🔥 YOUR REAL FIREBASE CONFIG (already inserted)
+    // 🔥 YOUR REAL FIREBASE CONFIG
     const firebaseConfig = {
       apiKey: "AIzaSyA2JH2mhUfy7yJkTUWcx4KrZ2CyA0t5GsU",
       authDomain: "zainchat-dff49.firebaseapp.com",
